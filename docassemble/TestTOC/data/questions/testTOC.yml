@@ -1,0 +1,34 @@
+---
+include:
+  - docassemble.AssemblyLine:assembly_line.yml
+---
+mandatory: True
+code: |
+  include_article_3 = False
+  DPOA_copy_download
+  
+---
+id: download DPOA_copy
+event: DPOA_copy_download
+question: |
+  All done
+subquestion: |
+  
+  
+  ${ al_user_bundle.download_list_html() }
+
+progress: 100
+---
+objects:
+  - al_user_bundle: ALDocumentBundle.using(elements=[DPOA_copy], filename="DPOA_copy", title="Your forms", enabled=True)
+---
+# ALDocument objects specify the metadata for each template
+objects:
+  - DPOA_copy: ALDocument.using(title="DPOA_copy", filename="DPOA_copy", enabled=True, has_addendum=False, )
+---
+attachment:
+  name: DPOA copy
+  filename: DPOA_copy
+  variable name: DPOA_copy[i]
+  skip undefined: True
+  docx template file: DPOA_copy.docx
